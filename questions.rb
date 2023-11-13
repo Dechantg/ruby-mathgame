@@ -21,8 +21,13 @@ module Questions
     private
   
     def ask_question(operation, num1, num2)
-      puts "What is #{num1} #{operation_symbol_to_string(operation)} #{num2}?"
-      answer = num1.send(operation, num2)
+      if operation == :/
+        puts "What is #{num1} #{operation_symbol_to_string(operation)} #{num2} (round to the nearest whole number)?"
+        answer = (num1.to_f / num2).round
+      else
+        puts "What is #{num1} #{operation_symbol_to_string(operation)} #{num2}?"
+        answer = num1.send(operation, num2)
+      end
   
       print ">"
       response = gets.chomp.to_i
